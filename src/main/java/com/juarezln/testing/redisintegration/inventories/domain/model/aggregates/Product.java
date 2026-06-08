@@ -68,7 +68,8 @@ public class Product {
      *
      * @param newPrice the new price to be set for the product
      */
-    public void updatePrice(Money newPrice) {
+    public Product updatePrice(Money newPrice) {
         this.price = newPrice;
+        return this;
     }
 }

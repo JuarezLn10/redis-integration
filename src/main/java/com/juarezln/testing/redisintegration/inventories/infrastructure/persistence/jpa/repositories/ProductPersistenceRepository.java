@@ -18,4 +18,13 @@ public interface ProductPersistenceRepository extends JpaRepository<ProductPersi
      * @return true if a product with the specified name exists in the repository, false otherwise
      */
     boolean existsByName(String name);
+
+    /**
+     * Checks if a product with the specified name exists in the repository, excluding a product with a specific ID. This method is useful for validating product names during updates to ensure that the new name does not conflict with existing products, while allowing the current product to retain its name if it is not being changed.
+     *
+     * @param name the name of the product to check for existence in the repository
+     * @param id the unique identifier of the product to be excluded from the existence check (typically the ID of the product being updated)
+     * @return true if a product with the specified name exists in the repository and has a different ID than the one provided, false otherwise
+     */
+    boolean existsByNameAndIdIsNot(String name, Long id);
 }
