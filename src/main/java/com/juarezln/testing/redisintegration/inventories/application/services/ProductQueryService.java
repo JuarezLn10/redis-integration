@@ -7,6 +7,7 @@ import com.juarezln.testing.redisintegration.inventories.domain.model.queries.Ge
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductQueryService {
 
@@ -24,5 +25,5 @@ public interface ProductQueryService {
      * @param query the query containing the product ID to retrieve
      * @return a list containing the product with the specified ID, or an empty list if not found
      */
-    Pair<Product, Stock> handle(GetProductByIdQuery query);
+    Pair<Optional<Product>, Optional<Stock>> handle(GetProductByIdQuery query);
 }

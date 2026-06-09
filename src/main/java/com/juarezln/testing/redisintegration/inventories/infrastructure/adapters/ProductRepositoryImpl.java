@@ -66,6 +66,14 @@ public class ProductRepositoryImpl implements ProductRepository {
      * @inheritDocs
      */
     @Override
+    public boolean existsById(Long id) {
+        return productJpaRepository.existsById(id);
+    }
+
+    /**
+     * @inheritDocs
+     */
+    @Override
     public boolean existsByNameAndItIsNot(String name, Long id) {
         return productJpaRepository.existsByNameAndIdIsNot(name, id);
     }

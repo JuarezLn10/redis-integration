@@ -42,6 +42,14 @@ public interface ProductRepository {
     boolean existsByName(String name);
 
     /**
+     * Checks if a product with the specified ID exists in the repository. This method returns true if a product with the given ID exists, and false otherwise. This can be useful for validating product IDs before performing operations that require an existing product, such as updates or deletions.
+     *
+     * @param id the unique identifier of the product to check for existence in the repository
+     * @return true if a product with the specified ID exists in the repository, false otherwise
+     */
+    boolean existsById(Long id);
+
+    /**
      * Checks if a product with the specified name exists in the repository, excluding a product with a specific ID. This method is useful for validating product names during updates to ensure that the new name does not conflict with existing products, while allowing the current product to retain its name if it is not being changed.
      *
      * @param name the name of the product to check for existence in the repository

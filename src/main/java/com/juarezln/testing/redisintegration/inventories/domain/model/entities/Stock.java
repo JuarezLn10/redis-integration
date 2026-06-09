@@ -43,8 +43,9 @@ public class Stock {
      *
      * @param amount the amount to increase the stock quantity by
      */
-    public void increaseQuantity(Integer amount) {
+    public Stock increaseQuantity(Integer amount) {
         this.quantity += amount;
+        return this;
     }
 
     /**
@@ -52,10 +53,11 @@ public class Stock {
      *
      * @param amount the amount to decrease the stock quantity by
      */
-    public void decreaseQuantity(Integer amount) {
+    public Stock decreaseQuantity(Integer amount) {
         if (this.quantity - amount < 0) {
             throw new IllegalArgumentException("Cannot decrease quantity below zero.");
         }
         this.quantity -= amount;
+        return this;
     }
 }
