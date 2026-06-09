@@ -39,7 +39,7 @@ public class OpenApiConfiguration {
      * @return the configured OpenAPI instance
      */
     @Bean
-    public OpenAPI restockPlatformOpenApi() {
+    public OpenAPI testingRedisIntegrationOpenApi() {
 
         // Create OpenAPI instance
         var openApi = new OpenAPI();
