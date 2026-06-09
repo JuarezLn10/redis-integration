@@ -19,5 +19,5 @@ public abstract class AbstractPersistenceEntity {
      */
     @Id
     @Setter
-    private Long id;
+    private String id;
 }
