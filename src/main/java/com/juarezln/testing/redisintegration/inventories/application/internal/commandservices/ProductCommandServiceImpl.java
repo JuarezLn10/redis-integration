@@ -42,13 +42,13 @@ public class ProductCommandServiceImpl implements ProductCommandService {
             return Result.failure(ApplicationError
                     .conflict("Product", "A product with the name '%s' already exists".formatted(command.name())));
         var product = new Product(command);
-        var stock = new Stock(product, 0);
         try {
             product = productRepository.save(product);
         } catch (Exception e) {
             return Result.failure(ApplicationError.unexpected("Register Product", "An unexpected error occurred while registering the product: %s".formatted(e.getMessage())));
         }
         log.info("Product with name {} registered successfully", product.getName());
+        var stock = new Stock(product, 0);
         try {
             stock = stockRepository.save(stock);
         } catch (Exception e) {
