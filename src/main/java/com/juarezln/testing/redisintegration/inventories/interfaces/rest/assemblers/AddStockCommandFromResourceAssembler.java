@@ -14,9 +14,9 @@ public class AddStockCommandFromResourceAssembler {
      * @param resource the AddStockResource to convert
      * @return the corresponding AddStockCommand
      */
-    public static AddStockCommand toCommandFromResource(AddStockResource resource) {
+    public static AddStockCommand toCommandFromResource(Long productId, AddStockResource resource) {
         return new AddStockCommand(
-            resource.productId(),
+            productId,
             resource.quantity()
         );
     }

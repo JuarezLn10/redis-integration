@@ -14,9 +14,9 @@ public class SubtrackStockCommandFromResourceAssembler {
      * @param resource the SubtrackStockResource to convert
      * @return a SubtrackStockCommand with the same productId and quantity as the resource
      */
-    public static SubtrackStockCommand toCommandFromResource(SubtrackStockResource resource) {
+    public static SubtrackStockCommand toCommandFromResource(Long productId, SubtrackStockResource resource) {
         return new SubtrackStockCommand(
-            resource.productId(),
+            productId,
             resource.quantity()
         );
     }

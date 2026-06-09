@@ -10,7 +10,6 @@ import com.juarezln.testing.redisintegration.inventories.domain.repositories.Sto
 import com.juarezln.testing.redisintegration.shared.application.result.ApplicationError;
 import com.juarezln.testing.redisintegration.shared.application.result.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +37,7 @@ public class ProductCommandServiceImpl implements ProductCommandService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result<Pair<Product, Stock>, ApplicationError> handle(RegisterProductCommand command) {
+    public Result<Long, ApplicationError> handle(RegisterProductCommand command) {
         if (productRepository.existsByName(command.name()))
             return Result.failure(ApplicationError
                     .conflict("Product", "A product with the name '%s' already exists".formatted(command.name())));
@@ -56,13 +55,14 @@ public class ProductCommandServiceImpl implements ProductCommandService {
             return Result.failure(ApplicationError.unexpected("Register Stock", "An unexpected error occurred while registering the stock for the product: %s".formatted(e.getMessage())));
         }
         log.info("Stock for product {} registered successfully", product.getName());
-        return Result.success(Pair.of(product, stock));
+        return Result.success(product.getId());
     }
 
     /**
      * @inheritDocs
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result<Product, ApplicationError> handle(UpdateProductPriceCommand command) {
         var result = productRepository.findById(command.productId());
         if (result.isEmpty())

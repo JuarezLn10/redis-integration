@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 /**
  * Resource class for updating the price of a product in the inventory.
  *
- * @param productId the ID of the product to update
  * @param newPriceAmount the new price amount for the product
  * @param newPriceCurrency the currency of the new price
  */
@@ -14,12 +13,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
         description = "Resource for updating the price of a product in the inventory."
 )
 public record UpdateProductPriceResource(
-        @Schema(
-                description = "The ID of the product to update",
-                example = "123"
-        )
-        Long productId,
-
         @Schema(
                 description = "The new price amount for the product",
                 example = "19.99"

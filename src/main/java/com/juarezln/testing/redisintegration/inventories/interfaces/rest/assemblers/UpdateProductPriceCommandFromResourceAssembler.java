@@ -15,9 +15,9 @@ public class UpdateProductPriceCommandFromResourceAssembler {
      * @param resource The incoming resource containing the new price information for the product.
      * @return An instance of UpdateProductPriceCommand that can be used to update the product's price in the application.
      */
-    public static UpdateProductPriceCommand toCommandFromResource(UpdateProductPriceResource resource) {
+    public static UpdateProductPriceCommand toCommandFromResource(Long productId, UpdateProductPriceResource resource) {
         return new UpdateProductPriceCommand(
-                resource.productId(),
+                productId,
                 SharedValueObjectsAssembler.toMoneyFromValues(resource.newPriceAmount(), resource.newPriceCurrency())
         );
     }

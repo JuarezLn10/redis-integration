@@ -12,6 +12,7 @@ import com.juarezln.testing.redisintegration.shared.application.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -39,6 +40,7 @@ public class StockCommandServiceImpl implements StockCommandService {
      * @inheritDocs
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result<Pair<Product, Stock>, ApplicationError> handle(AddStockCommand command) {
         return updateStock(
                 command.productId(),
@@ -51,6 +53,7 @@ public class StockCommandServiceImpl implements StockCommandService {
      * @inheritDocs
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result<Pair<Product, Stock>, ApplicationError> handle(SubtrackStockCommand command) {
         return updateStock(
                 command.productId(),

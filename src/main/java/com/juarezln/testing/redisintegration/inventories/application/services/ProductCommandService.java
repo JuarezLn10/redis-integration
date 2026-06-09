@@ -3,12 +3,8 @@ package com.juarezln.testing.redisintegration.inventories.application.services;
 import com.juarezln.testing.redisintegration.inventories.domain.model.aggregates.Product;
 import com.juarezln.testing.redisintegration.inventories.domain.model.commands.RegisterProductCommand;
 import com.juarezln.testing.redisintegration.inventories.domain.model.commands.UpdateProductPriceCommand;
-import com.juarezln.testing.redisintegration.inventories.domain.model.entities.Stock;
 import com.juarezln.testing.redisintegration.shared.application.result.ApplicationError;
 import com.juarezln.testing.redisintegration.shared.application.result.Result;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.Optional;
 
 /**
  * Service interface for handling commands related to product management in the inventory system.
@@ -22,7 +18,7 @@ public interface ProductCommandService {
      * @param command the command containing the details of the product to be registered
      * @return an Optional containing the registered Product if the registration was successful, or an empty Optional if the registration failed
      */
-    Result<Pair<Product, Stock>, ApplicationError> handle(RegisterProductCommand command);
+    Result<Long, ApplicationError> handle(RegisterProductCommand command);
 
     /**
      * Handles the UpdateProductPriceCommand to update the price of an existing product.
